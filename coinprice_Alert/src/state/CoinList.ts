@@ -6,7 +6,10 @@ import { coinsRequest } from "../api/coinListing";
 import { Coin, Currency } from "../common/types";
 
 
-class CoinListStore {
+export class CoinListStore {
+  // 추후에 다른 store에서 변수를 가지고 올 수도 있음으로 rootstore를 임시로 만들어 둔다. 
+  rootStore;
+
   @observable 
   list: Coin[] = [];
   @observable 
@@ -16,6 +19,10 @@ class CoinListStore {
   @observable 
   loading: boolean = false;
 
+  constructor(root){
+    this.rootStore = root 
+  }
+  
   page: number = 0;
   perPage: number = 20;
   baseCurrency: Currency = "USD";
@@ -59,4 +66,3 @@ class CoinListStore {
   }
 }
 
-export const CoinListStoreContext = createContext(new CoinListStore());

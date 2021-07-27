@@ -2425,6 +2425,11 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   "version" "15.7.4"
 
+"@types/react-native-sqlite-storage@^5.0.1":
+  "integrity" "sha512-M4KDSFeHVVh0qiV9WvNr5e5VonRDzYpDqBQCFPtmDAVHRoUBNWxeSQETZ+BNF8jGavxN0u/FMbOQWGo+7UwRaA=="
+  "resolved" "https://registry.npmjs.org/@types/react-native-sqlite-storage/-/react-native-sqlite-storage-5.0.1.tgz"
+  "version" "5.0.1"
+
 "@types/react-native@^0.64.12":
   "integrity" "sha512-sw6WGSaL219zqrgdb4kQUtFB9iGXC/LmecLZ+UUWEgwYvD0YH81FqWYmONa2HuTkOFAsxu2bK4DspkWRUHIABQ=="
   "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.64.12.tgz"

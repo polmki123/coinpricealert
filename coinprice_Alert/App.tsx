@@ -11,6 +11,9 @@ import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 
 import CoinList from "./src/components/CoinList";
+import { StoreProvider } from "./src/state/Context";
+import { RootStore } from "./src/state/RootStore";
+
 
 const style = StyleSheet.create({
   safeArea: {
@@ -19,11 +22,15 @@ const style = StyleSheet.create({
   }
 });
 
+const rootStore = new RootStore();
+
 const App = () => {
   return (
-    <SafeAreaView style={style.safeArea}>
-      <CoinList />
-    </SafeAreaView>
+    <StoreProvider value={rootStore}>
+      <SafeAreaView style={style.safeArea}>
+        <CoinList />
+      </SafeAreaView>
+    </StoreProvider>
   );
 };
 

@@ -3,7 +3,9 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
-import { CoinListStoreContext } from "../state/CoinList";
+// import { CoinListStoreContext } from "../state/CoinList";
+import { useStores } from "../state/Context";
+
 import CoinRow from "./CoinRow";
 import ErrorPopup from "./ErrorPopup";
 
@@ -18,11 +20,12 @@ import ErrorPopup from "./ErrorPopup";
  * It's good candidate for future refactoring.
  */
 const CoinList = observer(() => {
-  const coinListStore = useContext(CoinListStoreContext);
+
+  const { coinListStore } = useStores();
 
   useEffect( () => {
     coinListStore.getData();
-  }, );
+  }, [] );
 
   return (
     <View style={styles.container}>

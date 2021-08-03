@@ -17,14 +17,16 @@
     "color": "^4.0.0",
     "expo-font": "^9.2.1",
     "jsonous": "^7.0.0",
-    "mobx": "^5.13.0",
-    "mobx-react-lite": "^1.4.1",
+    "mobx": "^6.3.2",
+    "mobx-react": "^7.2.0",
+    "mobx-react-lite": "^3.2.0",
     "native-base": "^3.0.6",
     "react": "^16.8.6",
     "react-native": "^0.64.2",
     "react-native-cli": "^2.0.1",
     "react-native-dotenv": "^3.1.1",
     "react-native-fs": "^2.18.0",
+    "react-native-pager-view": "^5.4.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-svg": "^12.1.1",
@@ -65,5 +67,21 @@
   "rules": {
     "react/jsx-filename-extension": 0,
     "no-unused-vars": 1
+  },
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
   }
 }

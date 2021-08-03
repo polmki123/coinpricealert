@@ -11,9 +11,10 @@ import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 
 import CoinList from "./src/components/CoinList";
+import Tab from "./src/components/Tab";
 import { StoreProvider } from "./src/state/Context";
 import { RootStore } from "./src/state/RootStore";
-
+import { Provider } from 'mobx-react'; // MobX 에서 사용하는 Provider
 
 const style = StyleSheet.create({
   safeArea: {
@@ -28,7 +29,7 @@ const App = () => {
   return (
     <StoreProvider value={rootStore}>
       <SafeAreaView style={style.safeArea}>
-        <CoinList />
+        <Tab />
       </SafeAreaView>
     </StoreProvider>
   );

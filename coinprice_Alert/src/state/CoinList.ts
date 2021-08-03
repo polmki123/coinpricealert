@@ -1,40 +1,36 @@
-import { action, observable } from "mobx";
+
 import { observer } from "mobx-react-lite";
 import { createContext } from "react";
 
 import { coinsRequest } from "../api/coinListing";
 import { Coin, Currency } from "../common/types";
 
+import { makeAutoObservable  } from "mobx";
 
 export class CoinListStore {
   // 추후에 다른 store에서 변수를 가지고 올 수도 있음으로 rootstore를 임시로 만들어 둔다. 
   rootStore;
 
-  @observable 
   list: Coin[] = [];
-  @observable 
   error: string | null = null;
-  @observable 
   showError: boolean = false;
-  @observable 
   loading: boolean = false;
 
   constructor(root){
-    this.rootStore = root 
+    this.rootStore = root;
+    makeAutoObservable(this)
   }
   
   page: number = 0;
   perPage: number = 20;
   baseCurrency: Currency = "USD";
 
-  @action 
   getNextPage() {
     if (this.loading) return;
     this.page += 1;
     this.getData();
   }
 
-  @action 
   refresh() {
     if (this.loading) return;
     this.page = 0;
@@ -42,7 +38,6 @@ export class CoinListStore {
     this.getData();
   }
 
-  @action 
   getData() {
     if (this.loading) return;
 

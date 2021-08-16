@@ -1,6 +1,6 @@
 import Decoder, * as _ from "jsonous";
 
-import { Coin, Currency } from "../common/types";
+import { Coin, Currency, Ticker } from "../common/types";
 import { makeRequest } from "./makeRequest";
 
 /**
@@ -45,6 +45,45 @@ export const coinsRequest = (
     coinListDecoder(baseCurrency)
   );
 
+const tickerListUrl = (): string => `market/all`;
+
+const tickerListDecoder = (): Decoder<Ticker[]> =>
+  _.array(
+    _.succeed({})
+      .assign("market", _.field("market", _.string) )
+      );
+
+// [x['market'] for x in markets if x['market'].startswith(fiat)]
+
+export const tickerRequest = (
+  ): Promise<Ticker[]> =>
+    makeRequest(
+      tickerListUrl(),
+      "get",
+      null,
+      tickerListDecoder()
+    );
+
+const priceListUrl = (ticker): string => `ticker/markets=${ticker}`;
+
+const priceListDecoder = (): Decoder<Ticker[]> =>
+  _.array(
+    _.succeed({})
+      .assign("market", _.field("market", _.string) )
+      );
+
+// [x['market'] for x in markets if x['market'].startswith(fiat)]
+
+export const priceRequest = (
+  ticker
+  ): Promise<Ticker[]> =>
+    makeRequest(
+      priceListUrl(ticker),
+      "get",
+      null,
+      priceListDecoder()
+    );
+  
 /**
  * Response example:
  * [

@@ -8,6 +8,10 @@ export interface Coin {
   priceChange: number;
 }
 
+export interface Ticker {
+  market: string;
+}
+
 export interface FailedResponse {
   code: number;
   message: string;

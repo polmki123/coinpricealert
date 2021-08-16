@@ -29,7 +29,7 @@ export class CoinListStore {
     if (this.loading) return;
     this.page += 1;
     this.getData();
-  }
+  }z
 
   refresh() {
     if (this.loading) return;

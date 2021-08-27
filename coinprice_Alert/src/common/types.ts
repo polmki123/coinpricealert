@@ -1,7 +1,7 @@
 export type Currency = "USD" | "BTC";
 
 export interface Coin {
-  id: number;
+  id: string;
   symbol: string;
   name: string;
   price: number;

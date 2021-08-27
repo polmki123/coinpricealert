@@ -20,7 +20,7 @@ const CoinRow: React.FC<Props> = React.memo((props: Props) => {
         {coin.name}
       </Text>
       <Text style={styles.price} numberOfLines={1}>
-        ${formatNumber(coin.price, 4)}
+        { coin.price > 100 ? formatNumber(coin.price, 0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') :  formatNumber(coin.price, 2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') }
       </Text>
       <Text
         style={[styles.priceChange, { color: changeColor }]}

@@ -8,5 +8,6 @@ export const Colors = {
   TEXT_DARK: '#6d788c',
   RED: '#d23f31',
   GREEN: '#0f9d58',
-  PINK: '#b257c5'
+  PINK: '#b257c5',
+  BLACK: '#000000'
 }

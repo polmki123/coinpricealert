@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { createContext } from "react";
 
 import { coinsRequest } from "../api/coinListing";
+import { priceRequest } from "../api/upbitListing";
 import { Coin, Currency } from "../common/types";
 
 import { makeAutoObservable  } from "mobx";
@@ -38,12 +39,30 @@ export class CoinListStore {
     this.getData();
   }
 
+  // getData() {
+  //   if (this.loading) return;
+
+  //   this.loading = true;
+
+  //   coinsRequest(this.page, this.perPage, this.baseCurrency)
+  //     .then(list => {
+  //       this.list = this.list.concat(list);
+  //       this.loading = false;
+  //       this.page += 1;
+  //     })
+  //     .catch(e => {
+  //       this.loading = false;
+  //       this.error = e.message;
+  //       this.showError = true;
+  //     });
+  // }
+
   getData() {
     if (this.loading) return;
 
     this.loading = true;
 
-    coinsRequest(this.page, this.perPage, this.baseCurrency)
+    priceRequest()
       .then(list => {
         this.list = this.list.concat(list);
         this.loading = false;
@@ -55,6 +74,7 @@ export class CoinListStore {
         this.showError = true;
       });
   }
+
 
   closeError() {
     this.showError = false;

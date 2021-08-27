@@ -4,8 +4,13 @@ import { Maybe } from "maybeasy";
 import { ok } from "resulty";
 import { FailedResponse } from "../common/types";
 
+// const api = axios.create({
+//   baseURL: "https://api.upbit.com/v1",
+// });
+
 const api = axios.create({
-  baseURL: "https://api.upbit.com/v1",
+  baseURL: "https://pro-api.coinmarketcap.com/v1/",
+  headers: { "X-CMC_PRO_API_KEY": "ca6486f0-9083-4cc3-883c-0fb44371c17d" }
 });
 
 /**
@@ -83,7 +88,6 @@ export async function makeRequest<T>(
   if (maybeServerData === null) {
     throw new Error(error.message);
   }
-
   if (!serverDataDecoder) {
     return;
   }
@@ -100,6 +104,7 @@ export async function makeRequest<T>(
   if (data === null) {
     throw new Error(`Server data decoder failed: ${decodeError}`);
   }
+  console.log(data)
   // console.info(data)
   return data;
 }
@@ -115,7 +120,7 @@ const makeAndDecodeResponse = async (
       requestConfig.data = body;
     }
     const { data: responseData } = await api(requestConfig);
-
+    console.log(responseData);
     return succeedResponseDecoder.decodeAny(responseData).cata<DecodeResult>({
       Ok: val => [val, { code: 0, message: "" }],
       Err: msg => [

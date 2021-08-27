@@ -17,7 +17,7 @@ const coinListUrl = (
 const coinListDecoder = (baseCurrency: Currency): Decoder<Coin[]> =>
   _.array(
     _.succeed({})
-      .assign("id", _.field("id", _.number))
+      .assign("id", _.field("id", _.string))
       .assign("symbol", _.field("symbol", _.string))
       .assign("name", _.field("name", _.string))
       .assign("price", _.at(["quote", baseCurrency, "price"], _.number))
@@ -45,44 +45,21 @@ export const coinsRequest = (
     coinListDecoder(baseCurrency)
   );
 
-const tickerListUrl = (): string => `market/all`;
 
-const tickerListDecoder = (): Decoder<Ticker[]> =>
-  _.array(
-    _.succeed({})
-      .assign("market", _.field("market", _.string) )
-      );
+  
 
-// [x['market'] for x in markets if x['market'].startswith(fiat)]
-
-export const tickerRequest = (
-  ): Promise<Ticker[]> =>
-    makeRequest(
-      tickerListUrl(),
-      "get",
-      null,
-      tickerListDecoder()
-    );
-
-const priceListUrl = (ticker): string => `ticker/markets=${ticker}`;
-
-const priceListDecoder = (): Decoder<Ticker[]> =>
-  _.array(
-    _.succeed({})
-      .assign("market", _.field("market", _.string) )
-      );
-
-// [x['market'] for x in markets if x['market'].startswith(fiat)]
-
-export const priceRequest = (
-  ticker
-  ): Promise<Ticker[]> =>
-    makeRequest(
-      priceListUrl(ticker),
-      "get",
-      null,
-      priceListDecoder()
-    );
+// export function priceRequest (): Promise<Coin[]>
+// {
+//     const ticker = tickerRequest();
+//     return (
+//       makeRequest(
+//         priceListUrl(ticker),
+//         "get",
+//         null,
+//         priceListDecoder()
+//       )
+//     )
+// };
   
 /**
  * Response example:

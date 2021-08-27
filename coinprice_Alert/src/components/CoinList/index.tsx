@@ -43,7 +43,6 @@ const CoinList = observer(() => {
         maxToRenderPerBatch={20}
         removeClippedSubviews={true}
       />
-      <Text>{coinListStore.page}</Text>
       <ErrorPopup
         show={coinListStore.showError}
         message={coinListStore.error}

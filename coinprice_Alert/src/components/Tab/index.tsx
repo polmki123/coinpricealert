@@ -9,7 +9,6 @@ import { NativeBaseProvider } from 'native-base';
 import { Colors } from '../../constants'
 
 import { useStores } from "../../state/Context";
-import { TabStore } from "../../state/Tab";
 
 import CoinList from '../CoinList'
 import ErrorPopup from '../ErrorPopup'
